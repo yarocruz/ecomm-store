@@ -78,11 +78,12 @@
   flex-wrap: wrap;
   max-width: 800px;
   margin-top: 3rem;
+  list-style: none;
 }
 
 .card {
   margin: 1rem;
-  flex-basis: 45%;
+  flex-basis: calc(50% - 2rem);
   padding: 1.5rem;
   text-align: left;
   color: inherit;

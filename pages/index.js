@@ -5,49 +5,46 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>The Flair Shop</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          The Flair Shop
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          The best flair button swag on the web!
         </p>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+        <ul className={styles.grid}>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+          <li className={styles.card}>
+            <a href="https://nextjs.org/docs" >
+              <img src="/images/flair_sorry.jpg" alt="Yellow flair button."/>
+              <h3>Sorry.</h3>
+              <p>Yellow sorry flair.</p>
+            </a>
+          </li>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+          <li className={styles.card}>
+            <a href="https://nextjs.org/learn">
+              <img src="/images/flair_we_need_to_talk.jpg" alt="Black on white flair."/>
+              <h3>We need to talk.</h3>
+              <p>Black on white flair.</p>
+            </a>
+          </li>
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+          <li className={styles.card}>
+            <a href="https://github.com/vercel/next.js/tree/master/examples">
+              <img src="/images/flair_combo.jpg" alt="Pack of 6 flair combo."/>
+              <h3>Combo Flair</h3>
+              <p>Pack of 6.</p>
+            </a>
+          </li>
+
+        </ul>
       </main>
 
       <footer className={styles.footer}>
