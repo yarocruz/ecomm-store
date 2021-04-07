@@ -1,0 +1,23 @@
+[
+  {
+    "id": "price_1IdfsMBqhM9Vyja5hMkPFG1U",
+    "title": "Sorry",
+    "description" : "Yellow sorry flair",
+    "image": "/images/flair_sorry.jpg",
+    "price" : 5.00
+  },
+  {
+    "id": "price_1IdfufBqhM9Vyja5S2k0sI7t",
+    "title": "We need to Talk",
+    "description" : "Black on white flair",
+    "image": "/images/flair_we_need_to_talk.jpg",
+    "price" : 5.00
+  },
+  {
+    "id": "price_1IdfvWBqhM9Vyja5QaONn0er",
+    "title": "Combo Flair",
+    "description" : "Pack of 5",
+    "image": "/images/flair_combo.jpg",
+    "price" : 10.00
+  }
+]

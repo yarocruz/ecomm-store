@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
+import products from '../products.json'
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -19,31 +21,19 @@ export default function Home() {
         </p>
 
         <ul className={styles.grid}>
-
-          <li className={styles.card}>
-            <a href="https://nextjs.org/docs" >
-              <img src="/images/flair_sorry.jpg" alt="Yellow flair button."/>
-              <h3>Sorry.</h3>
-              <p>Yellow sorry flair.</p>
-            </a>
-          </li>
-
-          <li className={styles.card}>
-            <a href="https://nextjs.org/learn">
-              <img src="/images/flair_we_need_to_talk.jpg" alt="Black on white flair."/>
-              <h3>We need to talk.</h3>
-              <p>Black on white flair.</p>
-            </a>
-          </li>
-
-          <li className={styles.card}>
-            <a href="https://github.com/vercel/next.js/tree/master/examples">
-              <img src="/images/flair_combo.jpg" alt="Pack of 6 flair combo."/>
-              <h3>Combo Flair</h3>
-              <p>Pack of 6.</p>
-            </a>
-          </li>
-
+          {products.map(product => {
+            const { id, title, price, image, description } = product;
+            return (
+                <li key={id} className={styles.card}>
+                  <a href="https://nextjs.org/docs" >
+                    <img src={image} alt={title}/>
+                    <h3>{title}</h3>
+                    <p>${price}</p>
+                    <p>{description}</p>
+                  </a>
+                </li>
+            )
+          })}
         </ul>
       </main>
 
