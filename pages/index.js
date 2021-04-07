@@ -17,7 +17,7 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          The best flair button swag on the web!
+          The best flair button swag on the universe!
         </p>
 
         <ul className={styles.grid}>
