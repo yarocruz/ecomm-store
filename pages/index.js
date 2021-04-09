@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
@@ -5,7 +6,57 @@ import { initiateCheckout } from "../lib/payments";
 
 import products from '../products.json'
 
+const defaultCart = {
+    products: {}
+}
+
 export default function Home() {
+  const [cart, updateCart] = useState(defaultCart)
+
+  const cartItems = Object.keys(cart.products).map(key => {
+      const product = products.find(({id}) => `${id}` === `${key}`)
+      return {
+          ...cart.products[key],
+          pricePerItem: product.price
+      }
+  })
+
+    const subtotal = cartItems.reduce((acc, { pricePerItem, quantity}) => {
+        return acc + ( pricePerItem * quantity)
+    }, 0)
+
+    const totalItems = cartItems.reduce((acc, { quantity}) => {
+        return acc + quantity
+    }, 0)
+
+  function addToCart({ id } = {}) {
+      updateCart(prev => {
+          let cardState = {...prev};
+
+          if (cardState.products[id]) {
+              cardState.products[id].quantity = cardState.products[id].quantity + 1;
+          } else {
+              cardState.products[id] = {
+                  id,
+                  quantity: 1
+              }
+          }
+
+          return cardState;
+      })
+  }
+
+  function checkout() {
+      initiateCheckout({
+          lineItems: cartItems.map(item => {
+              return {
+                  price: item.id,
+                  quantity: item.quantity
+              }
+          })
+      })
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -22,6 +73,14 @@ export default function Home() {
           The best flair button swag on the universe!
         </p>
 
+      <p className={styles.description}>
+          <strong>Items:</strong> {totalItems}
+          <br />
+          <strong>Total Cost:</strong> ${subtotal}
+          <br />
+          <button className={styles.button} onClick={checkout}>Checkout</button>
+      </p>
+
         <ul className={styles.grid}>
           {products.map(product => {
             const { id, title, price, image, description } = product;
@@ -35,15 +94,10 @@ export default function Home() {
                   </a>
                     <p>
                         <button className={styles.button} onClick={() => {
-                            initiateCheckout({
-                                lineItems: [
-                                    {
-                                        price: id,
-                                        quantity: 1
-                                    }
-                                ]
+                            addToCart({
+                                id,
                             })
-                        }}>Buy Now</button>
+                        }}>Add to Cart</button>
                     </p>
                 </li>
             )
