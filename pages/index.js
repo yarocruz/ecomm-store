@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-import useCart from "../hooks/use-cart";
+import { useCart } from "../hooks/use-cart";
 
 import products from '../products.json'
 
@@ -23,14 +23,6 @@ export default function Home() {
         <p className={styles.description}>
           The best flair button swag on the universe!
         </p>
-
-      <p className={styles.description}>
-          <strong>Items:</strong> {totalItems}
-          <br />
-          <strong>Total Cost:</strong> ${subtotal}
-          <br />
-          <button className={styles.button} onClick={checkout}>Checkout</button>
-      </p>
 
         <ul className={styles.grid}>
           {products.map(product => {

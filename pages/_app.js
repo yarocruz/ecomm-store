@@ -1,14 +1,16 @@
 import '../styles/globals.css'
 
+import { CartContext, useCartState} from "../hooks/use-cart";
+
 import Nav from "../components/nav";
 
 function MyApp({ Component, pageProps }) {
-
+    const cart = useCartState()
   return (
-      <>
-        <Nav />
-        <Component {...pageProps} />
-      </>
+      <CartContext.Provider value={cart}>
+          <Nav />
+          <Component {...pageProps} />
+      </CartContext.Provider>
   )
 }
 
