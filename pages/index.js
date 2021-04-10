@@ -1,61 +1,12 @@
-import { useState } from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-import { initiateCheckout } from "../lib/payments";
+import useCart from "../hooks/use-cart";
 
 import products from '../products.json'
 
-const defaultCart = {
-    products: {}
-}
-
 export default function Home() {
-  const [cart, updateCart] = useState(defaultCart)
-
-  const cartItems = Object.keys(cart.products).map(key => {
-      const product = products.find(({id}) => `${id}` === `${key}`)
-      return {
-          ...cart.products[key],
-          pricePerItem: product.price
-      }
-  })
-
-    const subtotal = cartItems.reduce((acc, { pricePerItem, quantity}) => {
-        return acc + ( pricePerItem * quantity)
-    }, 0)
-
-    const totalItems = cartItems.reduce((acc, { quantity}) => {
-        return acc + quantity
-    }, 0)
-
-  function addToCart({ id } = {}) {
-      updateCart(prev => {
-          let cardState = {...prev};
-
-          if (cardState.products[id]) {
-              cardState.products[id].quantity = cardState.products[id].quantity + 1;
-          } else {
-              cardState.products[id] = {
-                  id,
-                  quantity: 1
-              }
-          }
-
-          return cardState;
-      })
-  }
-
-  function checkout() {
-      initiateCheckout({
-          lineItems: cartItems.map(item => {
-              return {
-                  price: item.id,
-                  quantity: item.quantity
-              }
-          })
-      })
-  }
+    const { subtotal, totalItems, addToCart, checkout} = useCart();
 
   return (
     <div className={styles.container}>
