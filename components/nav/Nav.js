@@ -1,18 +1,22 @@
 import { FaShoppingCart } from 'react-icons/fa'
-
+import Link from 'next/link'
 import { useCart } from "../../hooks/use-cart";
 
 import styles from './Nav.module.css';
 
 const Nav = () => {
-    const { subtotal, checkout } = useCart()
+    const { subtotal } = useCart()
     return (
         <nav className={styles.nav}>
-            <p className={styles.navTitle}>Flair Button Shop</p>
+            <Link href="/">
+                <a><p className={styles.navTitle}>Flair Button Shop</p></a>
+            </Link>
             <p className={styles.navCart}>
-                <button onClick={checkout}>
-                    <FaShoppingCart /> ${subtotal}
-                </button>
+                <Link href="/cart">
+                    <a>
+                        <FaShoppingCart /> ${subtotal.toFixed(2)}
+                    </a>
+                </Link>
             </p>
         </nav>
     )

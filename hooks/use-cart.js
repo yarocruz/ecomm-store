@@ -29,12 +29,12 @@ export function useCartState() {
         const product = products.find(({id}) => `${id}` === `${key}`)
         return {
             ...cart.products[key],
-            pricePerItem: product.price
+            pricePerUnit: product.price
         }
     })
 
-    const subtotal = cartItems.reduce((acc, { pricePerItem, quantity}) => {
-        return acc + ( pricePerItem * quantity)
+    const subtotal = cartItems.reduce((acc, { pricePerUnit, quantity}) => {
+        return acc + ( pricePerUnit * quantity)
     }, 0)
 
     const totalItems = cartItems.reduce((acc, { quantity}) => {
@@ -71,6 +71,7 @@ export function useCartState() {
 
     return {
         cart,
+        cartItems,
         updateCart,
         subtotal,
         totalItems,
