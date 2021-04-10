@@ -58,6 +58,18 @@ export function useCartState() {
         })
     }
 
+    function updateItem({id, quantity}) {
+        updateCart(prev => {
+            let cardState = {...prev};
+
+            if (cardState.products[id]) {
+                cardState.products[id].quantity = quantity;
+            }
+
+            return cardState;
+        })
+    }
+
     function checkout() {
         initiateCheckout({
             lineItems: cartItems.map(item => {
@@ -76,6 +88,7 @@ export function useCartState() {
         subtotal,
         totalItems,
         addToCart,
+        updateItem,
         checkout
     }
 }
